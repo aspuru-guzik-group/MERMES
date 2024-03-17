@@ -26,8 +26,36 @@ def extract_from_figures(url):
             print(
                 f"Error occurred for image with caption: {caption}. Skipping... Error: {e}")
             continue
+    index_dict = merge_indices(index_dicts)
+    return index_dict
 
-    return index_dicts
+def merge_indices(index_dicts):
+    merged_index_dict = {}
+    for index_dict in index_dicts:
+        for key, value in index_dict.items():
+            if key in merged_index_dict:
+                merged_index_dict[key] = merge_index_dicts(merged_index_dict[key], value)
+            else:
+                merged_index_dict[key] = value
+    return merged_index_dict
+
+def merge_index_dicts(index_dict_1, index_dict_2):
+    chat = Chat()
+    chat.add_user_message(f"""
+I will provide two JSON dicts with the same keys.
+Your task is to merge the two JSON dicts into one, while keeping information as more as possible.
+Value N.R. means not reported.
+Output a JSON dict with the same keys as the input JSON dicts.
+<dict 1>
+{index_dict_1}
+</dict 1>
+<dict 2>
+{index_dict_2}
+</dict 2>
+""")
+    res = chat.complete_chat()
+    res = RobustParse().dict(res)
+    return res
 
 
 def extract_main_content(publisher, url):
