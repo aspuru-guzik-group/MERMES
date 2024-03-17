@@ -25,9 +25,10 @@ If you use Gemini and VertexAI, go to [Google cloud setup](https://cloud.google.
 
 ## Usage
 
-In the root of the project, run the following command:
+In the root of the project, you can run commands like:
 ```shell
 python main.py -u https://www.nature.com/articles/s41557-023-01424-6 -m openai
 ```
+The command above will extract the text from the given URL using the OpenAI model. You can replace the URL with any other URL from RSC and Nature journals. The URL should contain the HTML content of the article.
 
 Available models are `openai`, `google` and `anthropic`. The default model is `openai`.
