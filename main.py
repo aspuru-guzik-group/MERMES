@@ -6,22 +6,38 @@ from electro_extract.visualization.show_table import show_json_table
 if __name__ == '__main__':
 
     article_url = ""
+    model = "openai"
     args = sys.argv[1:]
     for i, arg in enumerate(args):
-        if arg == "--google":
-            from electro_extract.model.google_model import set_default_to_google
-            set_default_to_google()
-        elif arg == "--anthropic":
-            from electro_extract.model.anthropic_model import set_default_to_anthropic
-            set_default_to_anthropic()
+        if arg in ["-m", "--model"]:
+            model = args[i + 1]
+            if model not in ["google", "gemini", "anthropic", "claude", "openai", "gpt"]:
+                print("Invalid model. Using default model.")
+            else:
+                if model == "gemini":
+                    model = "google"
+                elif model == "claude":
+                    model = "anthropic"
+                elif model == "gpt":
+                    model = "openai"
         if arg in ["-u", "--url"]:
             article_url = args[i + 1]
             break
 
+    if model == "anthropic":
+        from electro_extract.model.anthropic_model import set_default_to_anthropic
+        set_default_to_anthropic()
+    elif model == "google":
+        from electro_extract.model.google_model import set_default_to_google
+        set_default_to_google()
+
     if article_url == "":
         print("-u argument not provided. Using default article url.")
         article_url = "https://pubs.rsc.org/en/content/articlehtml/2023/ob/d3ob00671a"
-    #article_url = 'https://www.nature.com/articles/s41557-023-01424-6'
+        #article_url = 'https://www.nature.com/articles/s41557-023-01424-6'
 
     index_dict = extract_from_figures(article_url)
-    show_json_table(index_dict)
+    if len(index_dict) == 0:
+        print("No electrolysis figures found in the article.")
+    else:
+        show_json_table(index_dict)
