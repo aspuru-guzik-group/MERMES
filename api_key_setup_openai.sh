@@ -1,3 +1,11 @@
+# check if the environment variable is already set
+# if so exit
+if [ -n "OPENAI_API_KEY" ]; then
+  echo "OPENAI_API_KEY is already set. Exiting."
+  exit 0
+fi
+
+
 echo "Please enter your OpenAI API key (it looks like 'sk-...'):"
 read -r API_KEY
 
