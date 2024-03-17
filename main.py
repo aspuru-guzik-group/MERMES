@@ -27,9 +27,13 @@ if __name__ == '__main__':
     if model == "anthropic":
         from electro_extract.model.anthropic_model import set_default_to_anthropic
         set_default_to_anthropic()
+        print("Using Anthropic model.")
     elif model == "google":
         from electro_extract.model.google_model import set_default_to_google
         set_default_to_google()
+        print("Using Google model.")
+    else:
+        print("Using OpenAI model.")
 
     if article_url == "":
         print("-u argument not provided. Using default article url.")
