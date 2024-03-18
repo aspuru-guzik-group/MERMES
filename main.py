@@ -40,13 +40,22 @@ if __name__ == '__main__':
         article_url = "https://pubs.rsc.org/en/content/articlehtml/2023/ob/d3ob00671a"
         #article_url = 'https://www.nature.com/articles/s41557-023-01424-6'
 
-    index_dict = extract_from_figures(article_url)
+    yields_dict, condition_dicts = extract_from_figures(article_url)
 
-
-
-    if len(index_dict) == 0:
+    if len(yields_dict) == 0 and len(condition_dicts) == 0:
         print("No electrolysis figures found in the article.")
     else:
-        with open("result_dict.json", "w") as f:
-            json.dump(index_dict, f)
-        show_json_table(index_dict)
+        if len(condition_dicts) > 0:
+            with open("conditions.json", "w") as f:
+                json.dump(condition_dicts, f)
+            show_json_table(condition_dicts)
+        if len(yields_dict) > 0:
+            yields_list = []
+            for key, value in yields_dict.items():
+                # copy the item to avoid changing the original data
+                new_value = {"name": key}
+                new_value.update(value)
+                yields_list.append(new_value)
+            with open("yields.json", "w") as f:
+                json.dump(yields_list, f)
+            show_json_table(yields_list)

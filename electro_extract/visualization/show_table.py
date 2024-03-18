@@ -3,19 +3,12 @@ import webbrowser
 from json2html import json2html
 
 
-def show_json_table(json_data):
+def show_json_table(json_list):
     """
     Show a json data as a table in browser
-    :param json_data: The json data to show
+    :param json_list: The json data to show
     :return:
     """
-    json_list = []
-    for key, value in json_data.items():
-        # copy the item to avoid changing the original data
-        new_value = {"name": key}
-        new_value.update(value)
-        json_list.append(new_value)
-
     table_html = json2html.convert(json=json_list)
     # write the html to a file
     html = f"""

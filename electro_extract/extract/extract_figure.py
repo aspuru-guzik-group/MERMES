@@ -1,3 +1,5 @@
+import traceback
+
 import requests
 from PIL import Image
 from bs4 import BeautifulSoup
@@ -5,7 +7,7 @@ from bs4 import BeautifulSoup
 from electro_extract.extract.extract_html import browser_headers, download_webpage, \
     iter_figure_image
 from electro_extract.extract.prompt import merge_index_dicts, filter_image_path_caption, \
-    process_electrolysis_figure
+    process_yield, process_reaction_conditions
 
 
 def extract_from_figures(url):
@@ -14,20 +16,23 @@ def extract_from_figures(url):
     main_content_div = extract_main_content(publisher, url)
     figure_paths, figure_captions = iter_figure_image(main_content_div, publisher, url)
 
-    index_dicts = []
+    yields_dicts = []
+    condition_dicts = []
     for img_path, caption in zip(figure_paths, figure_captions):
         print("processing figure with caption: ", caption)
         try:
             img = Image.open(img_path)
-            res_index_dicts = figure_processing(img, caption)
-            print(res_index_dicts)
-            index_dicts.extend(res_index_dicts)
+            yields, conditions = figure_processing(img, caption)
+            print(yields)
+            yields_dicts.extend(yields)
+            condition_dicts.extend(conditions)
         except Exception as e:
             print(
                 f"Error occurred for image with caption: {caption}. Skipping... Error: {e}")
+            print(traceback.format_exc())
             continue
-    index_dict = merge_indices(index_dicts)
-    return index_dict
+    yields_dict = merge_indices(yields_dicts)
+    return yields_dict, condition_dicts
 
 def merge_indices(index_dicts):
     merged_index_dict = {}
@@ -94,16 +99,22 @@ def get_img_list(img):
 def figure_processing(img, caption):
 
     is_related = filter_image_path_caption(img, caption)
-    if not is_related:
+
+    if not is_related["is_yield"] and not is_related["is_reaction_conditions"]:
         print("The image is not related to electrolysis. Skipping...")
-        return []
+        return [], []
     img_list = get_img_list(img)
-    index_dicts = []
+    yields_dicts = []
+    conditions_dicts = []
     if len(img_list) > 1:
         print(f"An image is split into {len(img_list)} parts. Caption: \n{caption} ")
     for img in img_list:
-        res = process_electrolysis_figure(img, caption)
-        index_dicts.append(res)
+        if is_related["is_reaction_conditions"]:
+            res = process_reaction_conditions(img, caption)
+            conditions_dicts.append(res)
+        if is_related["is_yield"]:
+            res = process_yield(img, caption)
+            yields_dicts.append(res)
 
-    return index_dicts
+    return yields_dicts, conditions_dicts
 

@@ -27,9 +27,11 @@ def filter_image_path_caption(img, caption):
     chat = Chat(
         system_message="You are a world-class expert of figure reading. You can answer anything.")
     chat.add_user_message(f"""
-I will provide an figure about the yield of a electrolysis reaction.
+I will provide a figure about an electrolysis reaction.
 Does the figure contain *yields* of different compounds of the reaction under the *same* reaction conditions.
-Out a json with the key "is_yield" with a boolean value.
+Does the figure contain *reaction conditions* of the reaction?
+
+Output a json with the keys "is_yield" nad "is_reaction_conditions" with a boolean value.
 
 Caption: {caption}
 """)
@@ -37,11 +39,11 @@ Caption: {caption}
 
     res = chat.complete_chat()
     res = RobustParse().dict(res)
-    return res["is_yield"]
+    return res
 
 
 @standard_multi_attempts
-def process_electrolysis_figure(image_path, caption):
+def process_yield(image_path, caption):
     chat = Chat(
         system_message="You are a world-class expert of figure reading. You can answer anything.")
     chat.add_user_message(f"""
@@ -61,6 +63,30 @@ The caption of the figure:
 """)
     chat.add_image_message(image_path)
     # Get the result of the chat conversation
+    res = chat.complete_chat()
+    res = RobustParse.dict(res)
+    return res
+
+
+def process_reaction_conditions(image_path, caption):
+    chat = Chat(system_message="You are a world-class expert of figure reading. You can answer anything.")
+    chat.add_user_message(f"""This is an electrolysis reaction. Output a JSON dict for the standard conditions with the following keys: 
+- "description": a string that describes the reaction.
+- "anode material":  a string that describes the anode material, which is the positive end. Abbreviations may be used in the image.
+- "cathode material": a string that describes the cathode material, which is the negative end. Abbreviations may be used in the image.
+- "electrolytes": a string that describes all the electrolytes and additives for the reaction. Provide all equivalents, amounts and concentrations in brackets. 
+- "solvents": a string that describes all the solvents for the reaction. Provide all volumes and ratios in brackets. 
+- "current": a string that describes the current used.
+- "duration": a string that describes the duration of the reaction. 
+- "air/inert": a string that describes if the reaction is performed in air or under inert conditions. 
+- "temperature": a string that describes the temperature of the reaction. 
+- "others": a string that describes any other reaction conditions not included in the previous keys. 
+In all the strings, only use information that are given. Put N.R. otherwise. Each compound should only appear once.
+
+The caption of the figure:
+{caption}
+""")
+    chat.add_image_message(image_path)
     res = chat.complete_chat()
     res = RobustParse.dict(res)
     return res
