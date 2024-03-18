@@ -1,0 +1,11 @@
+This is an electrolysis reaction. Output a JSON dict for the standard conditions with the following keys: 
+1) "anode material":  a string that describes the anode material, which is the positive end. Abbreviations may be used in the image.
+2) "cathode material": a string that describes the cathode material, which is the negative end. Abbreviations may be used in the image.
+3) "electrolytes": a string that describes all the electrolytes and additives for the reaction. Provide all equivalents, amounts and concentrations in brackets. 
+4) "solvents": a string that describes all the solvents for the reaction. Provide all volumes and ratios in brackets. 
+5) "current": a string that describes the current used.
+6) "duration": a string that describes the duration of the reaction. 
+7) "air/inert": a string that describes if the reaction is performed in air or under inert conditions. 
+8) "temperature": a string that describes the temperature of the reaction. 
+9) "others": a string that describes any other reaction conditions not included in the previous keys. 
+In all the strings, only use information that are given. Put N.R. otherwise. Each compound should only appear once.
