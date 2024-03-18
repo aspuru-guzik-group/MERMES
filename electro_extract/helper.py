@@ -47,7 +47,7 @@ class RobustParse:
 
 standard_multi_attempts = retry(
     wait=wait_fixed(0.5),
-    stop=(stop_after_attempt(3)),
+    stop=(stop_after_attempt(2)),
     retry=retry_if_exception(lambda e: True),
     reraise=False,
 )

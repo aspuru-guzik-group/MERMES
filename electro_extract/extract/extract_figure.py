@@ -110,11 +110,16 @@ def figure_processing(img, caption):
         print(f"An image is split into {len(img_list)} parts. Caption: \n{caption} ")
     for img in img_list:
         if is_related["is_reaction_conditions"]:
-            res = process_reaction_conditions(img, caption)
-            conditions_dicts.append(res)
+            try:
+                res = process_reaction_conditions(img, caption)
+                conditions_dicts.append(res)
+            except Exception as e:
+                print(f"Error occurred for image with caption: {caption}. Skipping... Error: {e}")
         if is_related["is_yield"]:
-            res = process_yield(img, caption)
-            yields_dicts.append(res)
-
+            try:
+                res = process_yield(img, caption)
+                yields_dicts.append(res)
+            except Exception as e:
+                print(f"Error occurred for image with caption: {caption}. Skipping... Error: {e}")
     return yields_dicts, conditions_dicts
 
