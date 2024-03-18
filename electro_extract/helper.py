@@ -1,6 +1,8 @@
 import ast
 import json
 
+from tenacity import retry, wait_fixed, stop_after_attempt, retry_if_exception
+
 
 class RobustParse:
 
@@ -41,3 +43,11 @@ class RobustParse:
         except:
             raise ValueError(f"Invalid json: {src}")
         return res
+
+
+standard_multi_attempts = retry(
+    wait=wait_fixed(0.5),
+    stop=(stop_after_attempt(3)),
+    retry=retry_if_exception(lambda e: True),
+    reraise=False,
+)

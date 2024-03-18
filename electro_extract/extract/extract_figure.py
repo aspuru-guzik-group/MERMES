@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 from electro_extract.extract.extract_html import browser_headers, download_webpage, \
     iter_figure_image
-from electro_extract.helper import RobustParse
+from electro_extract.helper import RobustParse, standard_multi_attempts
 from electro_extract.model.chat import Chat
 
 
@@ -39,6 +39,7 @@ def merge_indices(index_dicts):
                 merged_index_dict[key] = value
     return merged_index_dict
 
+@standard_multi_attempts
 def merge_index_dicts(index_dict_1, index_dict_2):
     chat = Chat()
     chat.add_user_message(f"""
@@ -125,7 +126,7 @@ def figure_processing(img, caption):
 
     return index_dicts
 
-
+@standard_multi_attempts
 def filter_image_path_caption(img, caption):
     chat = Chat(
         system_message="You are a world-class expert of figure reading. You can answer anything.")
@@ -142,7 +143,7 @@ Caption: {caption}
     res = RobustParse().dict(res)
     return res["is_yield"]
 
-
+@standard_multi_attempts
 def process_electrolysis_figure(image_path, caption):
     chat = Chat(
         system_message="You are a world-class expert of figure reading. You can answer anything.")
