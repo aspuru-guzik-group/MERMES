@@ -36,4 +36,4 @@ Available models are `openai`, `google` and `anthropic`. The default model is `o
 
 ## Modify the prompts
 
-The prompts are mainly in the `electro_extract/extract/extract_figure.py`. You can modify them and try out different prompts!
+The prompts are mainly in the `electro_extract/extract/prompt.py`. You can modify them and try out different prompts!
