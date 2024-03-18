@@ -1,3 +1,4 @@
+import json
 import sys
 
 from electro_extract.extract.extract_figure import extract_from_figures
@@ -20,9 +21,8 @@ if __name__ == '__main__':
                     model = "anthropic"
                 elif model == "gpt":
                     model = "openai"
-        if arg in ["-u", "--url"]:
+        elif arg in ["-u", "--url"]:
             article_url = args[i + 1]
-            break
 
     if model == "anthropic":
         from electro_extract.model.anthropic_model import set_default_to_anthropic
@@ -41,7 +41,12 @@ if __name__ == '__main__':
         #article_url = 'https://www.nature.com/articles/s41557-023-01424-6'
 
     index_dict = extract_from_figures(article_url)
+
+
+
     if len(index_dict) == 0:
         print("No electrolysis figures found in the article.")
     else:
+        with open("result_dict.json", "w") as f:
+            json.dump(index_dict, f)
         show_json_table(index_dict)

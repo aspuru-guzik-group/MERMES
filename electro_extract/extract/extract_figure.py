@@ -103,7 +103,7 @@ def get_img_list(img):
                 break
             img_part = img.crop((0, y_start, img.width, y_end))
             img_list.append(img_part)
-            img_part.show()
+            #img_part.show()
     else:
         img_list.append(img)
     return img_list
@@ -117,6 +117,8 @@ def figure_processing(img, caption):
         return []
     img_list = get_img_list(img)
     index_dicts = []
+    if len(img_list) > 1:
+        print(f"An image is split into {len(img_list)} parts. Caption: \n{caption} ")
     for img in img_list:
         res = process_electrolysis_figure(img, caption)
         index_dicts.append(res)
