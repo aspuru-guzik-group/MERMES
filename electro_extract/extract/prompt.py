@@ -10,7 +10,7 @@ def merge_index_dicts(index_dict_1, index_dict_2):
     chat = Chat()
     chat.add_user_message(f"""
 I will provide two JSON dicts with the same keys.
-Your task is to merge the two JSON dicts into one, while keeping information as more as possible.
+Your task is to merge the two JSON dicts into one, while keeping as much information as possible.
 Value N.R. means not reported.
 Output a JSON dict with the same keys as the input JSON dicts.
 <dict 1>
@@ -59,7 +59,7 @@ The value of each key of index should be a dict with the following keys:
 2) "yield": a string that describe all the yield information of the product.
 3) "additional": a string that contains all the additional information of the product, including ratios, specified reaction conditions, efficiency.  
 4) "footnote": information from footnote references. Provide information in full detail and in the format of ^ superscript : detail.
-In the all the string, only use information that are given. Put N.R. otherwise. 
+In all the strings, only use information that are given. Put N.R. otherwise. 
 
 The caption of the figure:
 {caption}
