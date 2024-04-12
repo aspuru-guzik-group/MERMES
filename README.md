@@ -29,11 +29,11 @@ In the root of the project, you can run commands like:
 ```shell
 python main.py -u https://www.nature.com/articles/s41557-023-01424-6 -m openai
 ```
-The command above will extract the text from the given URL using the OpenAI model. You can replace the URL with any other URL from RSC and Nature journals. The URL should contain the HTML content of the article.
+The command above will extract the text from the given URL using the OpenAI model. You can replace the URL with any other URLs from RSC and Nature Portfolio journals. The URL should contain the HTML content of the article.
 
 Available models are `openai`, `google` and `anthropic`. The default model is `openai`.
 
 
 ## Modify the prompts
 
-The prompts are mainly in the `electro_extract/extract/prompt.py`. You can modify them and try out different prompts!
+The default prompts can be found in `electro_extract/extract/prompt.py`. You can modify them and try out different prompts!
