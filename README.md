@@ -45,18 +45,19 @@ python -m mllm.setup.wizard
 
 ### 2.1 Running the MERMES pipeline 
 
-The main command to launch MERMES is 
+The main command to launch MERMES is: 
 ```shell
 python -m mermes.main
 ```
+Provide the URL of the article you want to analyze in Line 13 `article_url= ""`.  
 
 You can use this command to extract the text from a specific URL.
 ```shell
 python -m mermes.main -u https://www.nature.com/articles/s41557-023-01424-6 -m openai
 ```
-The command above will extract the text from the given URL using the OpenAI model. You can replace the URL with any other URLs from RSC and Nature Portfolio journals. The URL should contain the HTML content of the article.
+The command above will extract the text from the given URL using the OpenAI model. 
 
-Available models are `openai` (default), `anthropic`, `gemini`.
+You can replace the URL with any other URLs from RSC and Nature Portfolio journals. The URL should contain the HTML content of the article. Available models are `openai` (default), `anthropic`, `gemini`.
 
 ### 2.2 Modifying the prompts
 
