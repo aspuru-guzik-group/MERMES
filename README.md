@@ -65,4 +65,4 @@ You can replace the URL with any other URLs from RSC and Nature Portfolio journa
 The default prompts can be found in `mermes/extract/prompt.py`. You can modify them and try out different prompts!
 
 ## License 
-[Apache License 2.0] (https://choosealicense.com/licenses/apache-2.0/)
+[Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
