@@ -16,7 +16,7 @@ Note:  MERMES currently only accepts HTMLs from RSC and Nature Portfolio journal
 
 ## 1. Setup
 
-Requirement: Python 3.10 or higher (you can create an environment with Conda!)
+Requirement: Python 3.9 or higher (you can create an environment with Conda!)
 
 ### 1.1 Installation 
 #### Option 1 (quick installation):
