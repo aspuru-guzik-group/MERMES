@@ -35,11 +35,11 @@ pip install -e .
 
 ### 1.2 API key setup
 
-If you are using Windows, please use WSL.
+If you are using Windows, please don't use WSL.
 
 You can setup the API keys for the providers using the following wizard:
 ```shell
-python -m mllm.setup.wizard
+python -m mermes.wizard
 ```
 ## 2. Usage
 

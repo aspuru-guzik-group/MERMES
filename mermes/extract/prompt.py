@@ -58,13 +58,13 @@ def process_yield(image_path, caption):
     Returns: A dictionary where each key is an index reference of a product, and the value is another dictionary with keys "yield", "additional", and "footnote".
     """
     chat = Chat(
-        system_message="You are a world-class expert of figure reading. You can answer anything.")
+        system_message="You are a confident expert of reading electrolysis reaction. You can answer anything.")
     chat.add_user_message(f"""
 I will provide an image showing an electrolysis reaction and its caption. 
 I want to evaluate the full substrate scope. Each index reference refers to a unique product. 
 Superscript letters refer to additional information from footnotes in the caption. 
 There may be more than one superscript for each product molecule.
-Output a JSON dict with key being "the index reference of the product, such as 1a, 5b, etc." You should only include the key literally appearing in the given information.
+You must output a JSON dict with key being "the index reference of the product, such as 1a, 5b, etc." You should only include the key literally appearing in the given information.
 The value of each key of index should be a dict with the following keys:
 2) "yield": a string that describe all the yield information of the product.
 3) "additional": a string that contains all the additional information of the product, including ratios, specified reaction conditions, efficiency.  

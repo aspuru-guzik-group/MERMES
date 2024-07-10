@@ -1,13 +1,41 @@
 import json
+import os
 import sys
+
+from mllm.config import default_models
 
 from mermes.extract.extract_figure import extract_from_figures
 from mermes.visualization.show_table import show_json_table
 from mllm.provider_switch import set_default_to_anthropic, \
     set_default_to_gemini
 
-if __name__ == '__main__':
+import datetime
 
+def save_results(condition_dicts, yields_dict):
+    # create subfolders with date and time
+    folder_name = datetime.datetime.now().strftime("%m-%d-%H-%M-%S")
+    result_path = f"mermes_results/{folder_name}/"
+    os.makedirs(f"mermes_results/{folder_name}", exist_ok=True)
+    if len(condition_dicts) > 0:
+        with open(result_path+"/conditions.json", "w") as f:
+            json.dump(condition_dicts, f)
+        show_json_table(condition_dicts)
+    if len(yields_dict) > 0:
+        yields_list = []
+        for key, value in yields_dict.items():
+            # copy the item to avoid changing the original data
+            new_value = {"name": key}
+            new_value.update(value)
+            yields_list.append(new_value)
+        with open(result_path+"/yields.json", "w") as f:
+            json.dump(yields_list, f)
+        show_json_table(yields_list)
+    # get the absolute path
+    result_path = os.path.abspath(result_path)
+    print(f"Results saved to {result_path}")
+
+
+def main():
     print("Welcome to MERMES (Multimodal Reaction Mining pipeline for ElectroSynthesis)!")
 
     article_url = ""
@@ -36,6 +64,8 @@ if __name__ == '__main__':
         set_default_to_gemini()
         print("Using Google model.")
     else:
+        default_models["vision"] = "gpt-4-turbo"
+        default_models["expensive"] = "gpt-4-turbo"
         print("Using OpenAI model.")
 
     if article_url == "":
@@ -50,17 +80,8 @@ if __name__ == '__main__':
     if len(yields_dict) == 0 and len(condition_dicts) == 0:
         print("No electrolysis figures found in the article.")
     else:
-        if len(condition_dicts) > 0:
-            with open("conditions.json", "w") as f:
-                json.dump(condition_dicts, f)
-            show_json_table(condition_dicts)
-        if len(yields_dict) > 0:
-            yields_list = []
-            for key, value in yields_dict.items():
-                # copy the item to avoid changing the original data
-                new_value = {"name": key}
-                new_value.update(value)
-                yields_list.append(new_value)
-            with open("yields.json", "w") as f:
-                json.dump(yields_list, f)
-            show_json_table(yields_list)
+        save_results(condition_dicts, yields_dict)
+
+
+if __name__ == '__main__':
+    main()
