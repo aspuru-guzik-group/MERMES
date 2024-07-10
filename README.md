@@ -2,6 +2,8 @@
 
 ## Install
 
+Requirement: Python 3.10 or higher (you can create one environment with Conda!)
+
 ### Option 1:
 Install the package to your pip environment:
 ```shell
