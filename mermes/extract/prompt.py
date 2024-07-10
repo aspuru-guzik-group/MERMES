@@ -1,6 +1,6 @@
 import os
 
-from mermes.helper import standard_multi_attempts, RobustParse
+from mermes.extract.helper import standard_multi_attempts
 from mllm import Chat
 
 this_path = os.path.dirname(os.path.abspath(__file__))
@@ -20,8 +20,7 @@ Output a JSON dict with the same keys as the input JSON dicts.
 {index_dict_2}
 </dict 2>
 """)
-    res = chat.complete_chat()
-    res = RobustParse().dict(res)
+    res = chat.complete(parse="dict")
     return res
 
 
@@ -40,8 +39,7 @@ Caption: {caption}
 """)
     chat.add_image_message(img)
 
-    res = chat.complete_chat()
-    res = RobustParse().dict(res)
+    res = chat.complete(parse="dict")
     return res
 
 
@@ -66,8 +64,7 @@ The caption of the figure:
 """)
     chat.add_image_message(image_path)
     # Get the result of the chat conversation
-    res = chat.complete_chat()
-    res = RobustParse.dict(res)
+    res = chat.complete(parse="dict")
     return res
 
 
@@ -103,6 +100,5 @@ For example, the following json should be output for the following image
 {caption}""")
     chat.add_image_message(image_path)
     chat.add_user_message("Output your answer.")
-    res = chat.complete_chat()
-    res = RobustParse.dict(res)
+    res = chat.complete(parse="dict")
     return res

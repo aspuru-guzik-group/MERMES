@@ -36,4 +36,4 @@ Available models are `openai`, `anthropic`, `replicate`. The default model is `o
 
 ## Modify the prompts
 
-The default prompts can be found in `electro_extract/extract/prompt.py`. You can modify them and try out different prompts!
+The default prompts can be found in `mermes/extract/prompt.py`. You can modify them and try out different prompts!

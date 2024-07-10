@@ -3,6 +3,8 @@ import sys
 
 from mermes.extract.extract_figure import extract_from_figures
 from mermes.visualization.show_table import show_json_table
+from mllm.provider_switch import set_default_to_anthropic, \
+    set_default_to_gemini
 
 if __name__ == '__main__':
 
@@ -16,7 +18,7 @@ if __name__ == '__main__':
                 print("Invalid model. Using default model.")
             else:
                 if model == "gemini":
-                    model = "google"
+                    model = "gemini"
                 elif model == "claude":
                     model = "anthropic"
                 elif model == "gpt":
@@ -25,12 +27,10 @@ if __name__ == '__main__':
             article_url = args[i + 1]
 
     if model == "anthropic":
-        from mermes.model.anthropic_model import set_default_to_anthropic
         set_default_to_anthropic()
         print("Using Anthropic model.")
-    elif model == "google":
-        from mermes.model.google_model import set_default_to_google
-        set_default_to_google()
+    elif model == "gemini":
+        set_default_to_gemini()
         print("Using Google model.")
     else:
         print("Using OpenAI model.")

@@ -5,8 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 from pywebcopy import save_webpage
 
-from mermes.helper import RobustParse
-from mermes.model.chat import Chat
+
+from mllm import Chat
 
 browser_headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
@@ -95,7 +95,7 @@ def download_webpage(url, project_folder="./downloaded_contents"):
 
 def extract_caption(html_raw):
     chat = Chat()
-    chat.add_user_message(f"""
+    chat += f"""
 You are trying to extract the caption from the html.
 The html contains many irrelevant information, and you must extract the one that looks most like a caption.
 The caption should not contain any html tags, and should be a string.
@@ -105,7 +105,6 @@ HTML:
 HTML END
 
 Output your answer by a json dict with the key "caption" and the value being the caption.
-""")
-    res = chat.complete_chat()
-    res = RobustParse().dict(res)['caption']
+"""
+    res = chat.complete(parse="dict")['caption']
     return res

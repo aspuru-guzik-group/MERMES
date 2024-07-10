@@ -5,4 +5,5 @@ pillow
 pywebcopy~=7.0.2
 json2html~=1.3.0
 tenacity~=8.2.3
-MinimalLLM~=1.0.2
+MinimalLLM~=1.0.3
+google-generativeai
