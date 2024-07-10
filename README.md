@@ -14,17 +14,18 @@ Users can easily tailor MERMES for their own tasks by replacing the prompts and 
 
 Note:  MERMES currently only accepts HTMLs from RSC and Nature Portfolio journals. We will extended MERMES to automatically mine other document formats (PDF, XML etc.) and from other publishers in future updates. 
 
-## 1. How to install
+## 1. Setup
 
 Requirement: Python 3.10 or higher (you can create an environment with Conda!)
 
-### Option 1 (Quick installation):
+### 1.1 Installation 
+#### Option 1 (quick installation):
 Directly install the package to your pip environment:
 ```shell
 pip install git+https://github.com/aspuru-guzik-group/MERMES.git
 ```
 
-### Option 2 (For development purposes):
+#### Option 2 (For development purposes):
 Download the repository and install the requirements:
 ```shell
 git clone https://github.com/aspuru-guzik-group/MERMES.git
@@ -32,7 +33,7 @@ cd MERMES
 pip install -e .
 ```
 
-### API key setup
+### 1.2 API key setup
 
 If you are using Windows, please use WSL.
 
