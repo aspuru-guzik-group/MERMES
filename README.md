@@ -66,5 +66,4 @@ The default prompts can be found in `mermes/extract/prompt.py`. You can modify t
 ### 2.3 Navigating the folders of downloaded contents
 
 * The downloaded contents from each url are saved in `./downloaded_contents`.
-* The processed JSON files are saved in `./mermes_results`.
-* The downloaded figures are saved in XXXX
+* The downloaded figures and processed JSON files are saved in `./mermes_results`
