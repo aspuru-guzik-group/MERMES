@@ -26,7 +26,12 @@ python -m mllm.setup.wizard
 ```
 ## Usage
 
-In the root of the project, you can run commands like:
+The main command of MERMES is 
+```shell
+python -m mermes.main
+```
+
+You can use this command to extract the text from a given URL.
 ```shell
 python -m mermes.main -u https://www.nature.com/articles/s41557-023-01424-6 -m openai
 ```
