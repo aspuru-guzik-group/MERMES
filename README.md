@@ -64,3 +64,7 @@ You can replace the URL with any other URLs from RSC and Nature Portfolio journa
 The default prompts can be found in `mermes/extract/prompt.py`. You can modify them and try out different prompts!
 
 ### 2.3 Navigating the folders of downloaded contents
+
+* The downloaded contents from each url are saved in `./downloaded_contents`.
+* The processed JSON files are saved in `./mermes_results`.
+* The downloaded figures are saved in XXXX
