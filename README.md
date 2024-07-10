@@ -13,16 +13,10 @@ pip install -r requirements.txt
 
 If you are using Windows, please use WSL.
 
-Setup your API key. If you use OpenAI,
+You can setup the API keys for the providers using the following wizard:
 ```shell
-sh ./api_key_setup_openai.sh
+python -m mllm.setup.wizard
 ```
-If you use Anthropic,
-```shell
-sh ./api_key_setup_anthropic.sh
-```
-If you use Gemini and VertexAI, go to [Google cloud setup](https://cloud.google.com/vertex-ai/docs/generative-ai/multimodal/sdk-for-gemini/gemini-sdk-overview?hl=en).
-
 ## Usage
 
 In the root of the project, you can run commands like:
