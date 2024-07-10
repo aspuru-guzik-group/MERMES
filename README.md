@@ -49,7 +49,8 @@ The main command to launch MERMES is:
 ```shell
 python -m mermes.main
 ```
-Provide the URL of the article you want to analyze in Line 13 `article_url= ""`.  
+* Provide the URL of the article you want to analyze in Line 46 `article_url= ""`.
+* All results (downloaded contents and processed JSON files) are saved in `./mermes_results`.
 
 You can use this command to extract the text from a specific URL.
 ```shell
@@ -62,8 +63,3 @@ You can replace the URL with any other URLs from RSC and Nature Portfolio journa
 ### 2.2 Modifying the prompts
 
 The default prompts can be found in `mermes/extract/prompt.py`. You can modify them and try out different prompts!
-
-### 2.3 Navigating the folders of downloaded contents
-
-* The downloaded contents from each url are saved in `./downloaded_contents`.
-* The downloaded figures and processed JSON files are saved in `./mermes_results`
