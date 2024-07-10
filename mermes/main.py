@@ -8,6 +8,8 @@ from mllm.provider_switch import set_default_to_anthropic, \
 
 if __name__ == '__main__':
 
+    print("Welcome to MERMES (Multimodal Reaction Mining pipeline for ElectroSynthesis)!")
+
     article_url = ""
     model = "openai"
     args = sys.argv[1:]
@@ -23,6 +25,7 @@ if __name__ == '__main__':
                     model = "anthropic"
                 elif model == "gpt":
                     model = "openai"
+
         elif arg in ["-u", "--url"]:
             article_url = args[i + 1]
 
@@ -39,6 +42,8 @@ if __name__ == '__main__':
         print("-u argument not provided. Using default article url.")
         article_url = "https://pubs.rsc.org/en/content/articlehtml/2023/ob/d3ob00671a"
         #article_url = 'https://www.nature.com/articles/s41557-023-01424-6'
+
+    print("Working on url:", article_url)
 
     yields_dict, condition_dicts = extract_from_figures(article_url)
 

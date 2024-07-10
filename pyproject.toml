@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Mermes"
+description = "Multimodal Reaction Mining pipeline for ElectroSynthesis"
+version = "1.0.0"
+requires-python = ">=3.10"
+
+dynamic = ["dependencies"]
+
+readme = "README.md"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

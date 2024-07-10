@@ -2,11 +2,18 @@
 
 ## Install
 
+### Option 1:
+Install the package to your pip environment:
+```shell
+pip install git+https://github.com/aspuru-guzik-group/MERMES.git
+```
+
+### Option 2:
 Download the repository and install the requirements:
 ```shell
 git clone https://github.com/aspuru-guzik-group/MERMES.git
 cd MERMES
-pip install -r requirements.txt
+pip install -e .
 ```
 
 ### API key setup
@@ -21,11 +28,11 @@ python -m mllm.setup.wizard
 
 In the root of the project, you can run commands like:
 ```shell
-python main.py -u https://www.nature.com/articles/s41557-023-01424-6 -m openai
+python -m mermes.main -u https://www.nature.com/articles/s41557-023-01424-6 -m openai
 ```
 The command above will extract the text from the given URL using the OpenAI model. You can replace the URL with any other URLs from RSC and Nature Portfolio journals. The URL should contain the HTML content of the article.
 
-Available models are `openai`, `anthropic`, `replicate`. The default model is `openai`.
+Available models are `openai`, `anthropic`, `gemini`. The default model is `openai`.
 
 
 ## Modify the prompts
