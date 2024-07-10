@@ -40,8 +40,8 @@ if __name__ == '__main__':
 
     if article_url == "":
         print("-u argument not provided. Using default article url.")
-        article_url = "https://pubs.rsc.org/en/content/articlehtml/2023/ob/d3ob00671a"
-        #article_url = 'https://www.nature.com/articles/s41557-023-01424-6'
+        article_url = "https://pubs.rsc.org/en/content/articlehtml/2023/ob/d3ob00671a" #An example of RSC article
+        #article_url = "https://www.nature.com/articles/s41467-023-42603-w" #An example of Nature Portfolio article
 
     print("Working on url:", article_url)
 
