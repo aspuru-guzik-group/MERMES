@@ -7,6 +7,9 @@ this_path = os.path.dirname(os.path.abspath(__file__))
 
 @standard_multi_attempts
 def merge_index_dicts(index_dict_1, index_dict_2):
+    """
+    Merges two JSON dictionaries with the same keys. 
+    """
     chat = Chat()
     chat.add_user_message(f"""
 I will provide two JSON dicts with the same keys.
@@ -26,6 +29,10 @@ Output a JSON dict with the same keys as the input JSON dicts.
 
 @standard_multi_attempts
 def filter_image_path_caption(img, caption):
+    """
+    Determines if an image and its caption contain specific information about yields and reaction conditions.
+    """
+    
     chat = Chat(
         system_message="You are a world-class expert of figure reading. You can answer anything.")
     chat.add_user_message(f"""
@@ -45,6 +52,11 @@ Caption: {caption}
 
 @standard_multi_attempts
 def process_yield(image_path, caption):
+    """
+    Processes an image and its caption to extract yields and additional information about products.
+    
+    Returns: A dictionary where each key is an index reference of a product, and the value is another dictionary with keys "yield", "additional", and "footnote".
+    """
     chat = Chat(
         system_message="You are a world-class expert of figure reading. You can answer anything.")
     chat.add_user_message(f"""
@@ -69,6 +81,11 @@ The caption of the figure:
 
 
 def process_reaction_conditions(image_path, caption):
+    """
+    Processes an image and its caption to extract standard reaction conditions for an electrosynthesis reaction. A single-shot visual prompt pair is also included.
+      
+    Returns: A dictionary with keys describing the standard reaction conditions (anode material, cathode material, electrolytes, solvents, current, duration, air/inert, temperature, others).
+    """
     chat = Chat(system_message="You are a world-class expert of figure reading. You can answer anything.")
     chat.add_user_message(f"""This is an electrolysis reaction. Output a JSON dict for the standard conditions with the following keys: 
 - "anode material":  a string that describes the anode material, which is the positive end. Abbreviations may be used in the image.
