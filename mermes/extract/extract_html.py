@@ -5,8 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 from pywebcopy import save_webpage
 
-from electro_extract.helper import RobustParse
-from electro_extract.model.chat import Chat
+from mermes.helper import RobustParse
+from mermes.model.chat import Chat
 
 browser_headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}

@@ -9,17 +9,17 @@ from PIL.Image import Image
 
 n_available_models = 0
 try:
-    from electro_extract.model.openai_model import _complete_chat as openai_complete_chat
+    from mermes.model.openai_model import _complete_chat as openai_complete_chat
     n_available_models += 1
 except:
     pass
 try:
-    from electro_extract.model.google_model import _complete_chat as google_complete_chat
+    from mermes.model.google_model import _complete_chat as google_complete_chat
     n_available_models += 1
 except:
     pass
 try:
-    from electro_extract.model.anthropic_model import _complete_chat as anthropic_complete_chat
+    from mermes.model.anthropic_model import _complete_chat as anthropic_complete_chat
     n_available_models += 1
 except:
     pass

@@ -4,7 +4,7 @@ import os
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from electro_extract.model.chat import Chat
+    from mermes.model.chat import Chat
 
 
 import anthropic
@@ -15,7 +15,7 @@ client = anthropic.Anthropic(
 )
 
 def set_default_to_anthropic(expensive_vision_model=False):
-    from electro_extract.model.chat import default_models
+    from mermes.model.chat import default_models
     default_models["normal"] = "claude-3-sonnet-20240229"
     default_models["expensive"] = "claude-3-opus-20240229"
     default_models["vision"] = "claude-3-sonnet-20240229" if not expensive_vision_model else "claude-3-opus-20240229"

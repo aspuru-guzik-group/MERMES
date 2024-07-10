@@ -1,7 +1,7 @@
 import os
 
-from electro_extract.helper import standard_multi_attempts, RobustParse
-from electro_extract.model.chat import Chat
+from mermes.helper import standard_multi_attempts, RobustParse
+from mllm import Chat
 
 this_path = os.path.dirname(os.path.abspath(__file__))
 

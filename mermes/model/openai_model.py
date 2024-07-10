@@ -7,7 +7,7 @@ from openai import OpenAI
 
 
 if TYPE_CHECKING:
-    from electro_extract.model.chat import Chat
+    from mermes.model.chat import Chat
 
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -109,7 +109,7 @@ def _get_embeddings(texts, options):
 
 
 def set_default_to_openai():
-    from electro_extract.model.chat import default_models
+    from mermes.model.chat import default_models
     default_models["normal"] = "gpt-3.5-turbo"
     default_models["expensive"] = "gpt-4-turbo-preview"
     default_models["vision"] = "gpt-4-vision-preview"

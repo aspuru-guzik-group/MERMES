@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 from vertexai.generative_models import Part, GenerativeModel, Content, HarmCategory, HarmBlockThreshold
 
 if TYPE_CHECKING:
-    from electro_extract.model.chat import Chat
+    from mermes.model.chat import Chat
 
 
 map_to_google_role = {
@@ -93,7 +93,7 @@ google_models = ["gemini-1.0-pro", "gemini-1.0-pro-vision"]
 
 
 def set_default_to_google():
-    from electro_extract.model.chat import default_models
+    from mermes.model.chat import default_models
     default_models["normal"] = "gemini-1.0-pro"
     default_models["expensive"] = "gemini-1.0-pro"
     default_models["vision"] = "gemini-1.0-pro-vision"
@@ -104,7 +104,7 @@ def set_default_to_google():
 
 
 if __name__ == '__main__':
-    from electro_extract.model.chat import Chat
+    from mermes.model.chat import Chat
 
     chat = Chat()
     chat.add_user_message("Hello, I am a user message")

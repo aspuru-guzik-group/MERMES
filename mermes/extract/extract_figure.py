@@ -4,9 +4,9 @@ import requests
 from PIL import Image
 from bs4 import BeautifulSoup
 
-from electro_extract.extract.extract_html import browser_headers, download_webpage, \
+from mermes.extract.extract_html import browser_headers, download_webpage, \
     iter_figure_image
-from electro_extract.extract.prompt import merge_index_dicts, filter_image_path_caption, \
+from mermes.extract.prompt import merge_index_dicts, filter_image_path_caption, \
     process_yield, process_reaction_conditions
 
 

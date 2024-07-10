@@ -1,8 +1,8 @@
 import json
 import sys
 
-from electro_extract.extract.extract_figure import extract_from_figures
-from electro_extract.visualization.show_table import show_json_table
+from mermes.extract.extract_figure import extract_from_figures
+from mermes.visualization.show_table import show_json_table
 
 if __name__ == '__main__':
 
@@ -25,11 +25,11 @@ if __name__ == '__main__':
             article_url = args[i + 1]
 
     if model == "anthropic":
-        from electro_extract.model.anthropic_model import set_default_to_anthropic
+        from mermes.model.anthropic_model import set_default_to_anthropic
         set_default_to_anthropic()
         print("Using Anthropic model.")
     elif model == "google":
-        from electro_extract.model.google_model import set_default_to_google
+        from mermes.model.google_model import set_default_to_google
         set_default_to_google()
         print("Using Google model.")
     else:
