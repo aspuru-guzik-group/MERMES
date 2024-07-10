@@ -26,7 +26,7 @@ def download_image(image_url, save_path, base_url=None):
         with open(save_path, 'wb') as file:
             file.write(response.content)
 
-def iter_figure_image(main_content_soup, publisher, url, base_path: str="./downloaded_contents"):
+def iter_figure_image(main_content_soup, publisher, url, base_path):
     output_path = base_path + "/figures/"
     n = 0
     figure_paths = []

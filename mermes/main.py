@@ -11,11 +11,18 @@ from mllm.provider_switch import set_default_to_anthropic, \
 
 import datetime
 
-def save_results(condition_dicts, yields_dict):
-    # create subfolders with date and time
+def get_output_path():
     folder_name = datetime.datetime.now().strftime("%m-%d-%H-%M-%S")
     result_path = f"mermes_results/{folder_name}/"
     os.makedirs(f"mermes_results/{folder_name}", exist_ok=True)
+
+    # get the absolute path
+    result_path = os.path.abspath(result_path)
+    return result_path
+
+def save_results(condition_dicts, yields_dict, result_path):
+    # create subfolders with date and time
+
     if len(condition_dicts) > 0:
         with open(result_path+"/conditions.json", "w") as f:
             json.dump(condition_dicts, f)
@@ -30,8 +37,6 @@ def save_results(condition_dicts, yields_dict):
         with open(result_path+"/yields.json", "w") as f:
             json.dump(yields_list, f)
         show_json_table(yields_list)
-    # get the absolute path
-    result_path = os.path.abspath(result_path)
     print(f"Results saved to {result_path}")
 
 
@@ -75,12 +80,14 @@ def main():
 
     print("Working on url:", article_url)
 
-    yields_dict, condition_dicts = extract_from_figures(article_url)
+    result_path = get_output_path()
+
+    yields_dict, condition_dicts = extract_from_figures(article_url, result_path)
 
     if len(yields_dict) == 0 and len(condition_dicts) == 0:
         print("No electrolysis figures found in the article.")
     else:
-        save_results(condition_dicts, yields_dict)
+        save_results(condition_dicts, yields_dict, result_path)
 
 
 if __name__ == '__main__':

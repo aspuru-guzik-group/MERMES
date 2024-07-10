@@ -10,11 +10,11 @@ from mermes.extract.prompt import merge_index_dicts, filter_image_path_caption, 
     process_yield, process_reaction_conditions
 
 
-def extract_from_figures(url):
+def extract_from_figures(url, result_path):
     publisher = extract_publisher(url)
 
-    main_content_div = extract_main_content(publisher, url)
-    figure_paths, figure_captions = iter_figure_image(main_content_div, publisher, url)
+    main_content_div = extract_main_content(publisher, url, result_path+"/downloaded_contents")
+    figure_paths, figure_captions = iter_figure_image(main_content_div, publisher, url, result_path+"/downloaded_contents")
 
     yields_dicts = []
     condition_dicts = []
@@ -45,7 +45,7 @@ def merge_indices(index_dicts):
     return merged_index_dict
 
 
-def extract_main_content(publisher, url):
+def extract_main_content(publisher, url, download_path):
     if publisher == "nature":
         response = requests.get(url, browser_headers)
         if response.status_code == 200:
@@ -53,7 +53,7 @@ def extract_main_content(publisher, url):
         else:
             raise ValueError(f"Failed to download the webpage from {url}")
     elif publisher == "rsc":
-        main_html_path = download_webpage(url)
+        main_html_path = download_webpage(url, project_folder=download_path)
         with open(main_html_path, "r") as f:
             html_str = f.read()
         webpage_soup = BeautifulSoup(html_str, 'html.parser')
