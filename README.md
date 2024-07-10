@@ -12,7 +12,7 @@ MERMES is currently configured to perform two domain-specific tasks: (1) extract
 
 Users can easily tailor MERMES for their own tasks by replacing the prompts and single-shot examples with their own. 
 
-Note:  MERMES currently only accepts HTMLs from RSC and Nature Portfolio journals. We will extended MERMES to automatically mine other document formats (PDF, XML etc.) and from other publishers in future updates. 
+Note:  MERMES currently only accepts HTMLs from RSC and Nature Portfolio journals. We will extend MERMES to automatically mine other document formats (PDF, XML etc.) and from other publishers in future updates. 
 
 ## 1. Setup
 
